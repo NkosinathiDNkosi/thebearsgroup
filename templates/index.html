@@ -1,0 +1,1384 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================= -->
+<!-- ============================= NAVBAR ========================= -->
+<!-- ============================================================= -->
+
+<header id="navbar"
+  class="bg-[#0E2A47] fixed top-0 left-0 w-full z-50 transition-all duration-300">
+
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+
+    <!-- LOGO -->
+    <img src="{{ url_for('static', filename='logo.jpg') }}"
+         class="h-16 w-auto">
+
+    <!-- DESKTOP MENU -->
+    <nav id="navLinks"
+         class="hidden md:flex gap-8 font-medium text-white transition-colors duration-300">
+
+      <a href="#home" class="hover:text-blue-300">Home</a>
+      <a href="#services" class="hover:text-blue-300">Services</a>
+      <a href="#products" class="hover:text-blue-300">Products</a>
+      <a href="#map" class="hover:text-blue-300">Map</a>
+      <a href="#contact" class="hover:text-blue-300">Contact</a>
+
+    </nav>
+
+    <!-- MOBILE HAMBURGER -->
+    <button id="menuBtn" class="md:hidden text-white focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- MOBILE MENU DROPDOWN -->
+  <div id="mobileMenu"
+       class="hidden md:hidden bg-[#0E2A47] text-white px-6 pb-6 space-y-4">
+
+    <a href="#home" class="block hover:text-blue-300">Home</a>
+    <a href="#services" class="block hover:text-blue-300">Services</a>
+    <a href="#products" class="block hover:text-blue-300">Products</a>
+    <a href="#map" class="block hover:text-blue-300">Map</a>
+    <a href="#contact" class="block hover:text-blue-300">Contact</a>
+
+  </div>
+
+</header>
+
+<!-- ============================================================= -->
+<!-- ============================== HERO ========================== -->
+<!-- ============================================================= -->
+
+<section id="home" class="relative pt-28 md:pt-20 pb-16 md:pb-32 overflow-hidden scroll-mt-32">
+
+<div class="relative z-10">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-10 items-center px-6">
+
+    <!-- LEFT TEXT -->
+    <div>
+      <h1 class="text-3xl md:text-5xl font-bold text-[#0E2A47] mb-4 md:mb-6">
+        Patient-focused medical clinic
+      </h1>
+
+      <p class="text-base md:text-lg text-gray-600 mb-5 md:mb-6 leading-relaxed">
+        Offering comprehensive healthcare services including non-invasive body contouring procedures for women and men, women’s wellness, men’s health, ultrasound scans, IV drip therapy, HIV testing, counselling, and skincare treatments. Our goal is to help you take control of your health, help you feel confident, healthy, and supported at every stage of life.
+      </p>
+
+      <a href="#contact"
+         class="inline-block px-8 py-3 bg-[#0E2A47] text-white rounded-lg
+                hover:bg-[#153D6E] transition duration-300 shadow-md">
+        Book an Appointment
+      </a>
+    </div>
+
+    <!-- HERO IMAGE -->
+    <div class="relative rounded-2xl overflow-hidden">
+
+      <img src="{{ url_for('static', filename='hero.jpg') }}"
+           class="w-full h-[320px] md:h-[550px] object-cover">
+
+      <!-- Multi-edge blending overlay -->
+      <div class="absolute inset-0 pointer-events-none"
+           style="
+             background: 
+               linear-gradient(to right, white 0%, transparent 30%),
+               linear-gradient(to top, white 0%, transparent 30%),
+               linear-gradient(to bottom, white 0%, transparent 30%);
+             mix-blend-mode: lighten;
+             opacity: 0.8;
+           ">
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ================= INTRO TEXT SECTION ================= -->
+
+<section class="bg-white py-8 md:py-10">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-8 md:mb-12">
+
+      <h2 class="text-2xl md:text-3xl font-bold text-[#0E2A47] mb-3 md:mb-4">
+        Why Choose The Bears Healthcare Group
+      </h2>
+
+      <p class="text-sm md:text-lg text-[#0E2A47] font-medium text-justify max-w-3xl mx-auto leading-relaxed">
+        The Bears Healthcare Group is a trusted private medical clinic in Delmas dedicated to providing accessible, professional, and compassionate healthcare services to our community. Our clinic combines modern medical technology with patient-focused care to help individuals and families take control of their health with confidence.
+
+At The Bears Healthcare Group, we believe healthcare should be accessible, respectful, and focused on real results. Whether you need a quick health check, professional advice, or specialized treatments to improve your wellbeing, our team is here to support you every step of the way.
+Located conveniently in Delmas, Mpumalanga, we proudly serve individuals, couples, and families looking for reliable medical care and wellness solutions. 
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- ======================= NEW SERVICES ======================== -->
+<!-- ============================================================= -->
+
+<section id="newservices" class="py-10 md:py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- SECTION HEADER -->
+    <div class="text-center mb-8 md:mb-12 bg-[#0E2A47] py-4 md:py-6 rounded-xl shadow-md">
+      <h2 class="text-2xl md:text-4xl font-bold text-white">
+        New Services
+      </h2>
+    </div>
+
+    <!-- IMAGES GRID -->
+    <div class="grid md:grid-cols-3 gap-5 md:gap-8">
+
+      <!-- IMAGE 1 -->
+      <div class="rounded-3xl overflow-hidden shadow-lg bg-gray-50 p-2 md:p-3">
+        <img src="{{ url_for('static', filename='gallery1.jpg') }}"
+             alt="Clinic Image 1"
+             class="w-full h-auto rounded-2xl object-contain">
+      </div>
+
+      <!-- IMAGE 2 -->
+      <div class="rounded-3xl overflow-hidden shadow-lg bg-gray-50 p-2 md:p-3">
+        <img src="{{ url_for('static', filename='gallery2.jpg') }}"
+             alt="Clinic Image 2"
+             class="w-full h-auto rounded-2xl object-contain">
+      </div>
+
+      <!-- IMAGE 3 -->
+      <div class="rounded-3xl overflow-hidden shadow-lg bg-gray-50 p-2 md:p-3">
+        <img src="{{ url_for('static', filename='gallery3.jpg') }}"
+             alt="Clinic Image 3"
+             class="w-full h-auto rounded-2xl object-contain">
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ============================================================= -->
+<!-- ================= FEATURES + STATS COMBINED ================= -->
+<!-- ============================================================= -->
+
+<section class="relative py-10 md:py-14 bg-cover bg-center"
+         style="background-image: url('{{ url_for('static', filename='backg.jpg') }}');">
+
+  <!-- light overlay -->
+  <div class="absolute inset-0 bg-white/50"></div>
+
+  <div class="relative max-w-6xl mx-auto px-6">
+
+    <!-- ================= FEATURE BOXES ================= -->
+    <!-- TO MAKE THESE BOXES SMALLER AGAIN:
+         1) reduce min-w-[200px]
+         2) reduce p-5
+         3) reduce icon circle w-16 h-16
+    -->
+    <div class="flex gap-4 md:gap-6 flex-wrap justify-center md:justify-between mt-2 md:mt-6 mb-8 md:mb-12">
+
+      <!-- FEATURE 1 -->
+      <div class="flex-1 min-w-[200px] max-w-[320px] p-5 rounded-2xl
+                  bg-[#0E2A47]
+                  border border-white/20
+                  text-center
+                  shadow-lg
+                  transition-all duration-300
+                  hover:-translate-y-2">
+
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full
+                    bg-white/10
+                    flex items-center justify-center
+                    border border-white/30">
+
+          <svg width="32" height="32" viewBox="0 0 24 24"
+               fill="none"
+               stroke="white"
+               stroke-width="1.8"
+               stroke-linecap="round"
+               stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+
+        </div>
+
+        <h3 class="mb-2 text-white font-semibold text-base">
+          Satisfaction Guarantee
+        </h3>
+
+        <p class="text-white/80 text-sm leading-relaxed">
+          We ensure complete customer satisfaction with every service.
+        </p>
+
+      </div>
+
+      <!-- FEATURE 2 -->
+      <div class="flex-1 min-w-[200px] max-w-[320px] p-5 rounded-2xl
+                  bg-[#0E2A47]
+                  border border-white/20
+                  text-center
+                  shadow-lg
+                  transition-all duration-300
+                  hover:-translate-y-2">
+
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full
+                    bg-white/10
+                    flex items-center justify-center
+                    border border-white/20">
+
+          <svg width="26" height="26" viewBox="0 0 24 24"
+               fill="none"
+               stroke="white"
+               stroke-width="1.8"
+               stroke-linecap="round"
+               stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+
+        </div>
+
+        <h3 class="mb-2 text-white font-semibold text-base">
+          Advanced Technology
+        </h3>
+
+        <p class="text-white/80 text-sm leading-relaxed">
+          Using modern and reliable systems for the best results.
+        </p>
+
+      </div>
+
+      <!-- FEATURE 3 -->
+      <div class="flex-1 min-w-[200px] max-w-[320px] p-5 rounded-2xl
+                  bg-[#0E2A47]
+                  border border-white/20
+                  text-center
+                  shadow-lg
+                  transition-all duration-300
+                  hover:-translate-y-2">
+
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full
+                    bg-white/10
+                    flex items-center justify-center
+                    border border-white/30">
+
+          <svg width="32" height="32" viewBox="0 0 24 24"
+               fill="none"
+               stroke="white"
+               stroke-width="1.8"
+               stroke-linecap="round"
+               stroke-linejoin="round">
+            <circle cx="12" cy="7" r="3"/>
+            <path d="M12 10c-3.5 0-6 2-6 5v1h12v-1c0-3-2.5-5-6-5z"/>
+          </svg>
+
+        </div>
+
+        <h3 class="mb-2 text-white font-semibold text-base">
+          Professional Medical Practitioner
+        </h3>
+
+        <p class="text-white/80 text-sm leading-relaxed">
+          Experienced and certified professionals ready to assist you.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- ================= STATS BOXES ================= -->
+    <!-- TO MAKE THESE BOXES SMALLER AGAIN:
+         1) reduce p-6
+         2) reduce w-16 h-16 icon circle
+         3) reduce gap-6
+         4) reduce text-3xl if needed
+    -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
+
+      <!-- Happy Patients -->
+      <div class="backdrop-blur-xl bg-white/40 border border-white/50
+                  rounded-2xl shadow-xl p-5 md:p-6 space-y-3">
+
+        <div class="flex justify-center">
+          <div class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center
+                      bg-[#0E2A47] shadow-md text-white">
+
+            <svg width="34" height="34" viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.8"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+              <circle cx="8" cy="8" r="3"/>
+              <path d="M2 20c0-3 2.5-5 6-5s6 2 6 5"/>
+              <circle cx="17" cy="10" r="2.5"/>
+              <path d="M14.5 20c.3-2 2-3.5 4.5-3.5s4.5 1.5 4.5 3.5"/>
+            </svg>
+
+          </div>
+        </div>
+
+        <h3 class="text-2xl md:text-3xl font-bold text-[#0E2A47] counter" data-target="203">0</h3>
+        <h3 class="text-sm md:text-base font-semibold text-[#0E2A47]">
+          Happy Patients
+        </h3>
+
+      </div>
+
+      <!-- Online Appointments -->
+      <div class="backdrop-blur-xl bg-white/40 border border-white/50
+                  rounded-2xl shadow-xl p-5 md:p-6 space-y-3">
+
+        <div class="flex justify-center">
+          <div class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center
+                      bg-[#0E2A47] shadow-md text-white">
+
+            <svg width="34" height="34" viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.8"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+              <rect x="6" y="3" width="12" height="18" rx="2"/>
+              <line x1="9" y1="8" x2="15" y2="8"/>
+              <line x1="9" y1="12" x2="13" y2="12"/>
+              <polygon points="10 15 15 17.5 10 20"/>
+            </svg>
+
+          </div>
+        </div>
+
+        <h3 class="text-2xl md:text-3xl font-bold text-[#0E2A47] counter" data-target="203">0</h3>
+        <h3 class="text-sm md:text-base font-semibold text-[#0E2A47]">
+          Online Appointments
+        </h3>
+
+      </div>
+
+      <!-- Years of Experience -->
+      <div class="backdrop-blur-xl bg-white/40 border border-white/50
+                  rounded-2xl shadow-xl p-5 md:p-6 space-y-3">
+
+        <div class="flex justify-center">
+          <div class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center
+                      bg-[#0E2A47] shadow-md text-white">
+
+            <svg width="34" height="34" viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.8"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+              <circle cx="12" cy="10" r="4"/>
+              <path d="M8 14l-2 7 6-3 6 3-2-7"/>
+            </svg>
+
+          </div>
+        </div>
+
+        <h3 class="text-2xl md:text-3xl font-bold text-[#0E2A47] counter" data-target="2">0</h3>
+        <h3 class="text-sm md:text-base font-semibold text-[#0E2A47]">
+          Years Of Experience
+        </h3>
+
+      </div>
+
+      <!-- Total Staff -->
+      <div class="backdrop-blur-xl bg-white/40 border border-white/50
+                  rounded-2xl shadow-xl p-5 md:p-6 space-y-3">
+
+        <div class="flex justify-center">
+          <div class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center
+                      bg-[#0E2A47] shadow-md text-white">
+
+            <svg width="34" height="34" viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.8"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+              <circle cx="12" cy="7" r="3"/>
+              <path d="M5 21v-1c0-3 3-5 7-5s7 2 7 5v1"/>
+            </svg>
+
+          </div>
+        </div>
+
+        <h3 class="text-2xl md:text-3xl font-bold text-[#0E2A47] counter" data-target="10">0</h3>
+        <h3 class="text-sm md:text-base font-semibold text-[#0E2A47]">
+          Total Staff
+        </h3>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- ============================ SERVICES ======================== -->
+<!-- ============================================================= -->
+<section id="services"
+         class="relative py-10 md:py-14 bg-cover bg-center scroll-mt-32"
+         style="background-image: url('{{ url_for('static', filename='backg.jpg') }}');">
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-white/40"></div>
+
+  <!-- Content -->
+  <div class="relative max-w-7xl mx-auto px-6">
+
+<!-- SECTION HEADER -->
+    <div class="text-center mb-8 md:mb-12 bg-white py-4 md:py-6 rounded-xl shadow-md">
+      <h2 class="text-2xl md:text-4xl font-bold text-[#0E2A47]">
+        Our Medical Services
+      </h2>
+    </div>
+	
+	<div class="max-w-xl mx-auto mb-8">
+  <input
+    id="serviceSearch"
+    type="text"
+    placeholder="Search services..."
+    class="w-full p-4 rounded-xl border border-gray-200 bg-white focus:border-[#0E2A47] focus:ring-2 focus:ring-[#0E2A47]/20 outline-none transition"
+  >
+</div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+
+      <!-- SERVICE 1 -->
+      <div class="service-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden">
+        <div class="h-48 md:h-52 overflow-hidden">
+          <img src="{{ url_for('static', filename='img1.jpg') }}"
+     class="w-full h-full object-cover object-[center_20%] scale-95 rounded-t-2xl hover:scale-100 transition duration-500">
+        </div>
+        <div class="p-6 md:p-8">
+          <h3 class="text-xl font-semibold mb-3">WOMEN'S WELLNESS</h3>
+          <p class="text-gray-600 mb-4">
+            Pregnancy Test, Emergency Contraceptives, Family Planning, Cervical Cancer Screening.
+          </p>
+          <button onclick="toggleDetails('service1')" 
+            class="text-white bg-[#0E2A47] px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            Find Out More
+          </button>
+          <div id="service1" class="hidden mt-4 text-gray-600">
+            Our Women’s Wellness services are designed to support women at every stage of life by providing compassionate, confidential, and comprehensive healthcare. We offer reliable pregnancy testing with accurate results and professional guidance, ensuring that every patient receives the support and information they need to make informed decisions. Our emergency contraceptive services are available in a safe and non-judgmental environment, helping to prevent unintended pregnancies when timely intervention is needed. Through personalized family planning consultations, we assist women in choosing the most suitable contraceptive methods based on their health, lifestyle, and future goals, empowering them to take control of their reproductive health. Additionally, we provide cervical cancer screening services to promote early detection and prevention, helping identify potential risks before they develop into serious conditions. Our focus is on education, prevention, and ongoing care, ensuring that every woman feels respected, informed, and supported throughout her healthcare journey.
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICE 2 -->
+      <div class="service-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden">
+        <div class="h-48 md:h-52 overflow-hidden">
+          <img src="{{ url_for('static', filename='img2.jpg') }}"
+               class="w-full h-full object-cover hover:scale-105 transition duration-500">
+        </div>
+        <div class="p-6 md:p-8">
+          <h3 class="text-xl font-semibold mb-3">ANTENATAL & POSTNATAL CARE</h3>
+          <p class="text-gray-600 mb-4">
+            Ultrasound • Immunisation • Paternity Testing
+          </p>
+          <button onclick="toggleDetails('service2')" 
+            class="text-white bg-[#0E2A47] px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            Find Out More
+          </button>
+          <div id="service2" class="hidden mt-4 text-gray-600">
+		  Supporting Mothers and Families Throughout Pregnancy and Beyond
+At The Bears Healthcare Group, our antenatal and postnatal care services in Delmas are designed to support mothers, babies, and families throughout every stage of pregnancy and early parenthood. Our private clinic provides professional pregnancy care, ultrasound scans, newborn immunisation, and confidential paternity testing in a safe, supportive, and comfortable medical environment.
+During pregnancy, our ultrasound scan services help monitor your baby’s growth and development, confirm pregnancy progress, and detect any potential concerns early so that the right medical support can be provided when needed. These scans give parents reassurance while ensuring that both mother and baby are progressing well throughout the pregnancy journey.
+After birth, we offer essential baby immunisation services to protect newborns and young children from preventable diseases, helping build strong immunity and support long-term health and wellbeing.
+For families seeking clarity, we also provide accurate and confidential DNA paternity testing, handled professionally and discreetly to ensure reliable results and peace of mind.
+Our goal is to provide trusted antenatal and postnatal healthcare in Delmas, combining medical expertise with compassionate care. From pregnancy monitoring to newborn support, we are committed to ensuring a safe pregnancy, healthy baby, and confident start to parenthood.
+
+Expecting a baby or need a pregnancy scan?
+📞 Call or WhatsApp 065 352 0873 to book your appointment today.
+		  </div>
+        </div>
+      </div>
+
+      <!-- SERVICE 3 -->
+      <div class="service-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden">
+        <div class="h-48 md:h-52 overflow-hidden">
+          <img src="{{ url_for('static', filename='img3.jpg') }}"
+               class="w-full h-full object-cover hover:scale-105 transition duration-500">
+        </div>
+        <div class="p-6 md:p-8">
+          <h3 class="text-xl font-semibold mb-3">MEN'S HEALTH</h3>
+          <p class="text-gray-600 mb-4">
+            Medical Circumcision • Prostate Screening • Libido & Sexual Health Support
+          </p>
+          <button onclick="toggleDetails('service3')" 
+            class="text-white bg-[#0E2A47] px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            Find Out More
+          </button>
+          <div id="service3" class="hidden mt-4 text-gray-600">
+		  Professional Men’s Health Services in Delmas
+At The Bears Healthcare Group, we provide comprehensive men’s health services in Delmas designed to support prevention, early detection, and long-term wellbeing. Our private clinic offers professional medical care for men in a confidential, respectful, and comfortable clinical environment, helping patients address sensitive health concerns with confidence.
+Our medical circumcision services are performed by trained healthcare professionals using safe, hygienic procedures and proper post-procedure care. Medical circumcision can provide important health benefits, including improved hygiene and reduced risk of certain infections.
+We also offer prostate screening services, which are essential for detecting early signs of prostate conditions that commonly affect men as they age. Early screening allows for timely diagnosis and treatment, helping protect long-term health and wellbeing.
+For men experiencing concerns related to energy, performance, or intimacy, we provide libido and sexual health support consultations. These private consultations allow men to discuss their concerns openly while receiving professional assessment and treatment options tailored to their individual needs.
+At The Bears Healthcare Group, we encourage men to take an active role in their health by prioritizing regular check-ups, preventative screenings, and confidential medical support. Our goal is to help every patient maintain strength, confidence, and long-term wellness through trusted medical care.
+
+Take control of your health today.
+📞 Call or WhatsApp 065 352 0873 to book a private men’s health consultation.
+		  </div>
+        </div>
+      </div>
+
+      <!-- SERVICE 4 -->
+      <div class="service-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden">
+        <div class="h-48 md:h-52 overflow-hidden">
+          <img src="{{ url_for('static', filename='img4.jpg') }}"
+               class="w-full h-full object-cover hover:scale-105 transition duration-500">
+        </div>
+        <div class="p-6 md:p-8">
+          <h3 class="text-xl font-semibold mb-3">IV DRIP THERAPY</h3>
+          <p class="text-gray-600 mb-4">
+            Skin Glow • Anti-Acne • Weight Loss • Weight Gain • Libido Booster
+          </p>
+          <button onclick="toggleDetails('service4')" 
+            class="text-white bg-[#0E2A47] px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            Find Out More
+          </button>
+          <div id="service4" class="hidden mt-4 text-gray-600">
+		    Vitamin IV Drip Therapy for Wellness, Energy & Skin Health
+At The Bears Healthcare Group, our IV Drip Therapy in Delmas is designed to deliver essential vitamins, antioxidants, and nutrients directly into the bloodstream for faster absorption and more effective results than traditional supplements. These treatments support hydration, energy levels, skin health, metabolism, and overall wellness, helping patients feel revitalized from the inside out.
+Our Skin Glow IV Drip provides powerful skin-supporting nutrients that help promote brighter, healthier-looking skin and improved skin hydration, encouraging a natural radiant glow from within.
+For individuals struggling with breakouts or skin inflammation, our Anti-Acne IV Therapy helps support the body’s natural detoxification processes while delivering nutrients that contribute to clearer, healthier skin.
+We also offer Weight Loss IV Therapy, which supports metabolism, energy levels, and fat-burning processes while helping the body maintain hydration and essential nutrients during weight management journeys.
+For individuals who need help gaining healthy body mass, our Weight Gain IV Drips supply nutrients that support energy, appetite stimulation, and overall body strength, helping patients work toward healthy weight goals.
+In addition, our Libido Booster IV Therapy is designed to support energy, vitality, and sexual wellness, helping individuals improve stamina, hormonal balance support, and overall confidence.
+Each IV drip therapy session is administered by trained healthcare professionals in a safe, comfortable clinical environment, ensuring proper medical assessment and personalized treatment tailored to your wellness goals.
+At The Bears Healthcare Group in Delmas, our focus is on helping you restore balance, improve confidence, and achieve better health through advanced wellness treatments.
+
+Ready to feel refreshed, energized, and confident again?
+📞 Call or WhatsApp 065 352 0873 to book your IV Drip Therapy session today.
+		  </div>
+        </div>
+      </div>
+
+      <!-- SERVICE 5 -->
+      <div class="service-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden">
+        <div class="h-48 md:h-52 overflow-hidden">
+          <img src="{{ url_for('static', filename='img5.jpg') }}"
+               class="w-full h-full object-cover hover:scale-105 transition duration-500">
+        </div>
+        <div class="p-6 md:p-8">
+          <h3 class="text-xl font-semibold mb-3">HIV PREVENTION & MANAGEMENT</h3>
+          <p class="text-gray-600 mb-4">
+            HIV Testing & Counselling • PrEP • PEP
+          </p>
+          <button onclick="toggleDetails('service5')" 
+            class="text-white bg-[#0E2A47] px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            Find Out More
+          </button>
+          <div id="service5" class="hidden mt-4 text-gray-600">
+		    Confidential HIV Testing and Prevention Services in Delmas
+At The Bears Healthcare Group, we provide confidential HIV prevention and management services in Delmas, focused on early detection, education, and ongoing support. Our clinic offers professional HIV testing, counselling, and preventative treatments in a safe and respectful medical environment where every patient is treated with dignity and privacy.
+Our HIV testing and counselling services are designed to give patients clear, accurate results together with compassionate guidance. Every test is accompanied by professional counselling to help individuals understand their results, learn about prevention methods, and receive support for making informed health decisions.
+For individuals at higher risk of exposure, we offer PrEP (Pre-Exposure Prophylaxis) — a highly effective medication that significantly reduces the risk of contracting HIV when taken consistently as prescribed. PrEP is an important prevention option for individuals who want to proactively protect their health.
+In situations where potential exposure may have already occurred, our clinic provides PEP (Post-Exposure Prophylaxis). This emergency prevention treatment must be started within 72 hours of exposure to help prevent the virus from establishing infection.
+At The Bears Healthcare Group, our goal is to empower individuals through education, prevention, and confidential medical care, ensuring that every patient has access to reliable information, supportive counselling, and professional healthcare in a stigma-free environment.
+
+Book a Confidential HIV Consultation
+Your privacy and health matter.
+📞 Call or WhatsApp 065 352 0873 to book confidential HIV testing or counselling today
+		  </div>
+        </div>
+      </div>
+
+      <!-- SERVICE 6 -->
+      <div class="service-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden">
+        <div class="h-48 md:h-52 overflow-hidden">
+          <img src="{{ url_for('static', filename='img6.jpg') }}"
+               class="w-full h-full object-cover hover:scale-105 transition duration-500">
+        </div>
+        <div class="p-6 md:p-8">
+          <h3 class="text-xl font-semibold mb-3">COUNSELLING SERVICES</h3>
+          <p class="text-gray-600 mb-4">
+            Individual Counselling • Couples Counselling • Trauma Support
+          </p>
+          <button onclick="toggleDetails('service6')" 
+            class="text-white bg-[#0E2A47] px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            Find Out More
+          </button>
+          <div id="service6" class="hidden mt-4 text-gray-600">
+		  Professional Emotional and Mental Health Support in Delmas
+At The Bears Healthcare Group, our professional counselling services in Delmas are designed to provide emotional and psychological support in a safe, confidential, and compassionate environment. We understand that life’s challenges can affect mental wellbeing, relationships, and overall quality of life, which is why our counselling services focus on helping individuals and couples regain balance, clarity, and emotional strength.
+Our individual counselling sessions provide a supportive space where clients can discuss personal challenges, manage stress and anxiety, improve self-esteem, and develop healthier coping strategies. Through professional guidance, clients can gain practical tools to better navigate life transitions, emotional difficulties, and everyday pressures.
+We also offer couples counselling, designed to help partners strengthen communication, resolve conflicts, rebuild trust, and improve relationship dynamics. With structured guidance from trained professionals, couples can work toward healthier and more supportive relationships.
+For individuals who have experienced difficult or distressing events, we provide trauma counselling and emotional support services. These sessions help clients process their experiences, manage emotional responses, and gradually rebuild a sense of stability and wellbeing at a pace that feels comfortable and supportive.
+At The Bears Healthcare Group, our counselling approach is client-centered, respectful, and empowering, ensuring every individual feels heard, understood, and supported while working toward improved mental, emotional, and relational wellbeing.
+
+Book a Confidential Counselling Session
+You don’t have to face life’s challenges alone.
+📞 Call or WhatsApp 065 352 0873 to book a confidential counselling session today.
+		  </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================= -->
+<!-- ============================= Products ======================= -->
+<!-- ============================================================= -->
+
+<section id="products" class="py-10 md:py-14 bg-gray-100 scroll-mt-32">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Main Title -->
+    <h2 class="text-3xl font-bold text-center text-[#0E2A47] mb-8 md:mb-12">
+      Skin Glow Products
+    </h2>
+
+    <!-- GRID FOR BOTH SLIDES -->
+    <div class="grid md:grid-cols-2 gap-6 md:gap-10">
+
+      <!-- ================= LEFT COLUMN ================= -->
+      <div class="text-center">
+
+        <h3 class="text-lg font-bold text-[#0E2A47] mb-4">
+          Products
+        </h3>
+
+        <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-white">
+
+          <div id="carousel1" class="flex transition-all duration-300 ease-in-out">
+
+            <img src="{{ url_for('static', filename='prod1.jpeg') }}"
+                 class="w-full h-[320px] md:h-[500px] object-contain bg-white flex-shrink-0">
+
+            <img src="{{ url_for('static', filename='prod2.jpeg') }}"
+                 class="w-full h-[320px] md:h-[500px] object-contain bg-white flex-shrink-0">
+
+            <img src="{{ url_for('static', filename='prod3.jpeg') }}"
+                 class="w-full h-[320px] md:h-[500px] object-contain bg-white flex-shrink-0">
+
+            <img src="{{ url_for('static', filename='prod4.jpeg') }}"
+                 class="w-full h-[320px] md:h-[500px] object-contain bg-white flex-shrink-0">
+
+          </div>
+
+          <button onclick="prevSlide1()"
+            class="absolute left-4 top-1/2 -translate-y-1/2
+                   bg-white/90 hover:bg-white
+                   text-[#0E2A47]
+                   w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg
+                   flex items-center justify-center transition">
+            ❮
+          </button>
+
+          <button onclick="nextSlide1()"
+            class="absolute right-4 top-1/2 -translate-y-1/2
+                   bg-white/90 hover:bg-white
+                   text-[#0E2A47]
+                   w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg
+                   flex items-center justify-center transition">
+            ❯
+          </button>
+
+        </div>
+      </div>
+
+      <!-- ================= RIGHT COLUMN ================= -->
+      <div class="text-center">
+
+        <h3 class="text-lg font-bold text-[#0E2A47] mb-4">
+          Application
+        </h3>
+
+        <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-white">
+
+          <div id="carousel2" class="flex transition-all duration-300 ease-in-out">
+
+            <img src="{{ url_for('static', filename='face1.jpg') }}"
+                 class="w-full h-[320px] md:h-[500px] object-contain bg-white flex-shrink-0">
+
+            <img src="{{ url_for('static', filename='face2.jpg') }}"
+                 class="w-full h-[320px] md:h-[500px] object-contain bg-white flex-shrink-0">
+
+            <img src="{{ url_for('static', filename='face3.jpg') }}"
+                 class="w-full h-[320px] md:h-[500px] object-contain bg-white flex-shrink-0">
+
+            <img src="{{ url_for('static', filename='face4.jpg') }}"
+                 class="w-full h-[320px] md:h-[500px] object-contain bg-white flex-shrink-0">
+
+          </div>
+
+          <button onclick="prevSlide2()"
+            class="absolute left-4 top-1/2 -translate-y-1/2
+                   bg-white/90 hover:bg-white
+                   text-[#0E2A47]
+                   w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg
+                   flex items-center justify-center transition">
+            ❮
+          </button>
+
+          <button onclick="nextSlide2()"
+            class="absolute right-4 top-1/2 -translate-y-1/2
+                   bg-white/90 hover:bg-white
+                   text-[#0E2A47]
+                   w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg
+                   flex items-center justify-center transition">
+            ❯
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  
+<!-- ============================================================= -->
+<!-- ======================= TESTIMONIALS ======================== -->
+<!-- ============================================================= -->
+
+<section id="testimonials" class="relative py-10 md:py-14 overflow-hidden">
+
+  <!-- Section Background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#0E2A47]/90 via-[#0E2A47]/95 to-[#071521]"></div>
+
+  <!-- Floating stars -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <span class="absolute top-[12%] left-[10%] text-yellow-300/30 text-xl animate-pulse">★</span>
+    <span class="absolute top-[20%] right-[12%] text-yellow-300/20 text-sm animate-pulse">★</span>
+    <span class="absolute top-[55%] left-[6%] text-yellow-300/20 text-base animate-pulse">★</span>
+    <span class="absolute bottom-[18%] right-[10%] text-yellow-300/25 text-lg animate-pulse">★</span>
+    <span class="absolute bottom-[10%] left-[20%] text-yellow-300/20 text-xs animate-pulse">★</span>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-8 md:mb-10">
+      <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">
+        What Our Patients Say
+      </h2>
+      <p class="text-gray-300 text-sm md:text-base max-w-xl mx-auto">
+        Trusted by families and professionals across Mpumalanga.
+      </p>
+    </div>
+
+    <!-- Slider wrapper -->
+    <div class="relative overflow-hidden">
+
+      <!-- Slides track -->
+      <div id="testimonialTrack" class="flex transition-transform duration-700 ease-in-out">
+
+        <!-- Slide 1 -->
+        <div class="min-w-full grid md:grid-cols-3 gap-5">
+          <div class="backdrop-blur-xl bg-white/10 border border-white/20 p-5 rounded-2xl shadow-xl">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#1B6CA8] to-[#0E2A47] flex items-center justify-center text-white font-bold text-sm">
+                TN
+              </div>
+              <div class="ml-3">
+                <h4 class="text-white font-semibold text-sm">Thando Nkosi</h4>
+              </div>
+            </div>
+            <div class="flex mb-2 text-yellow-400 text-sm">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              “From the moment I walked in, the service felt world-class. The professionalism and attention to detail exceeded my expectations.”
+            </p>
+          </div>
+
+          <div class="backdrop-blur-xl bg-white/10 border border-white/20 p-5 rounded-2xl shadow-xl">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#1B6CA8] to-[#0E2A47] flex items-center justify-center text-white font-bold text-sm">
+                KM
+              </div>
+              <div class="ml-3">
+                <h4 class="text-white font-semibold text-sm">Kagiso Mokoena</h4>
+              </div>
+            </div>
+            <div class="flex mb-2 text-yellow-400 text-sm">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              “The level of care and efficiency is unmatched. Booking online was quick and the doctors explained everything clearly.”
+            </p>
+          </div>
+
+          <div class="backdrop-blur-xl bg-white/10 border border-white/20 p-5 rounded-2xl shadow-xl">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#1B6CA8] to-[#0E2A47] flex items-center justify-center text-white font-bold text-sm">
+                LM
+              </div>
+              <div class="ml-3">
+                <h4 class="text-white font-semibold text-sm">Lerato Mahlangu</h4>
+              </div>
+            </div>
+            <div class="flex mb-2 text-yellow-400 text-sm">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              “The clinic environment is calm, modern and welcoming. I felt respected and cared for throughout my visit.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="min-w-full grid md:grid-cols-3 gap-5">
+          <div class="backdrop-blur-xl bg-white/10 border border-white/20 p-5 rounded-2xl shadow-xl">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#1B6CA8] to-[#0E2A47] flex items-center justify-center text-white font-bold text-sm">
+                SM
+              </div>
+              <div class="ml-3">
+                <h4 class="text-white font-semibold text-sm">Sipho Mthembu</h4>
+              </div>
+            </div>
+            <div class="flex mb-2 text-yellow-400 text-sm">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              “The staff were welcoming and professional. I appreciated how smoothly everything was handled from start to finish.”
+            </p>
+          </div>
+
+          <div class="backdrop-blur-xl bg-white/10 border border-white/20 p-5 rounded-2xl shadow-xl">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#1B6CA8] to-[#0E2A47] flex items-center justify-center text-white font-bold text-sm">
+                ZN
+              </div>
+              <div class="ml-3">
+                <h4 class="text-white font-semibold text-sm">Zanele Ndlovu</h4>
+              </div>
+            </div>
+            <div class="flex mb-2 text-yellow-400 text-sm">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              “A clean, peaceful space with great medical care. I left feeling reassured, respected, and well looked after.”
+            </p>
+          </div>
+
+          <div class="backdrop-blur-xl bg-white/10 border border-white/20 p-5 rounded-2xl shadow-xl">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#1B6CA8] to-[#0E2A47] flex items-center justify-center text-white font-bold text-sm">
+                PB
+              </div>
+              <div class="ml-3">
+                <h4 class="text-white font-semibold text-sm">Palesa Buthelezi</h4>
+              </div>
+            </div>
+            <div class="flex mb-2 text-yellow-400 text-sm">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              “Their communication was excellent and the appointment process was simple. I would confidently recommend this clinic to others.”
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Arrows -->
+      <button onclick="prevTestimonialSlide()"
+        class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#0E2A47] w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition z-10">
+        ❮
+      </button>
+
+      <button onclick="nextTestimonialSlide()"
+        class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#0E2A47] w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition z-10">
+        ❯
+      </button>
+    </div>
+
+    <!-- Dots -->
+    <div class="flex justify-center gap-2 mt-6">
+      <button class="testimonial-dot w-3 h-3 rounded-full bg-white" onclick="goToTestimonialSlide(0)"></button>
+      <button class="testimonial-dot w-3 h-3 rounded-full bg-white/40" onclick="goToTestimonialSlide(1)"></button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- =============================== MAP ========================== -->
+<!-- ============================================================= -->
+
+<section id="map" class="py-10 md:py-16 bg-white scroll-mt-32">
+
+  <h2 class="text-3xl font-bold text-center text-[#0E2A47] mb-6 md:mb-10">
+    Find Us
+  </h2>
+
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="rounded-xl overflow-hidden shadow-lg">
+      
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21196.422588966438!2d28.652048982651905!3d-26.152069460625274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eeacd55108dc47f%3A0xa51a36490e8ba7f4!2sSamuel%20Rd%20%26%20Van%20Der%20Walt%20St%2C%20Delmas%2C%202210!5e0!3m2!1sen!2sza!4v1773151487473!5m2!1sen!2sza"
+        width="100%"
+        height="350"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/27653520873" 
+   target="_blank"
+   class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition duration-300 z-50 flex items-center justify-center">
+
+  <svg xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 32 32"
+       class="w-7 h-7 fill-white">
+    <path d="M16 .396C7.164.396 0 7.56 0 16.396c0 2.885.76 5.702 2.2 8.18L0 32l7.646-2.158a15.944 15.944 0 0 0 8.354 2.32c8.836 0 16-7.164 16-16S24.836.396 16 .396zm0 29.25c-2.54 0-5.022-.682-7.17-1.973l-.513-.305-4.537 1.28 1.208-4.417-.334-.53a13.317 13.317 0 0 1-2.066-7.305c0-7.35 5.98-13.33 13.33-13.33 3.56 0 6.91 1.386 9.43 3.907 2.52 2.52 3.906 5.87 3.906 9.43 0 7.35-5.98 13.33-13.33 13.33zm7.31-9.997c-.4-.2-2.37-1.17-2.74-1.3-.37-.13-.64-.2-.9.2-.27.4-1.03 1.3-1.26 1.57-.23.27-.47.3-.87.1-.4-.2-1.7-.63-3.24-2-.85-.75-1.42-1.68-1.6-1.96-.17-.27-.02-.42.13-.56.14-.14.4-.47.6-.7.2-.23.27-.4.4-.66.13-.27.07-.5-.03-.7-.1-.2-.9-2.17-1.23-2.97-.32-.78-.65-.67-.9-.68h-.77c-.27 0-.7.1-1.07.5-.37.4-1.4 1.37-1.4 3.33 0 1.97 1.43 3.87 1.63 4.13.2.27 2.8 4.27 6.78 5.98.95.4 1.7.64 2.28.82.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.33-.93.33-1.73.23-1.9-.1-.17-.37-.27-.77-.47z"/>
+  </svg>
+
+</a>
+
+<!-- ============================================================= -->
+<!-- =========================== CONTACT FORM ==================== -->
+<!-- ============================================================= -->
+
+<section id="contact"
+         class="relative py-10 md:py-20 bg-cover bg-center scroll-mt-32"
+         style="background-image: url('{{ url_for('static', filename='backg.jpg') }}');">
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-white/60"></div>
+
+  <!-- Content -->
+  <div class="relative max-w-7xl mx-auto px-6">
+
+    {% if success %}
+<div id="successMessage"
+     class="max-w-2xl mx-auto mb-6 bg-green-50 border border-green-200 text-green-700 px-5 py-4 rounded-2xl font-semibold shadow-sm text-center opacity-0 -translate-y-4 transition-all duration-700">
+  {{ success }}
+</div>
+{% endif %}
+
+{% if error %}
+<div id="errorMessage"
+     class="max-w-2xl mx-auto mb-6 bg-red-50 border border-red-200 text-red-700 px-5 py-4 rounded-2xl font-semibold shadow-sm text-center opacity-0 -translate-y-4 transition-all duration-700">
+  {{ error }}
+</div>
+{% endif %}
+
+    <div class="text-center max-w-3xl mx-auto mb-8 md:mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#0E2A47] mb-4">
+        Book an Appointment
+      </h2>
+      <p class="text-gray-600 text-base md:text-lg leading-relaxed">
+        Schedule your visit with The Bears Healthcare Group quickly and easily. Complete the form below and our team will assist you with your preferred service, date, and time.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-6 md:gap-8 items-start">
+
+      <!-- LEFT INFO PANEL -->
+      <div class="lg:col-span-2 bg-[#0E2A47] text-white rounded-[2rem] p-6 md:p-8 shadow-2xl">
+        <h3 class="text-2xl font-bold mb-4">Why Book With Us?</h3>
+        <p class="text-white/80 leading-relaxed mb-6 md:mb-8">
+          We combine compassionate care, modern healthcare solutions, and a patient-first experience to make every visit smooth, comfortable, and professional.
+        </p>
+
+        <div class="space-y-5">
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 8-6-16-3 8H2"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Trusted Healthcare</h4>
+              <p class="text-white/75 text-sm leading-relaxed">
+                Professional healthcare support delivered with warmth, care, and attention.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Easy Scheduling</h4>
+              <p class="text-white/75 text-sm leading-relaxed">
+                Select your preferred service, date, and time in just a few simple steps.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Quick Response</h4>
+              <p class="text-white/75 text-sm leading-relaxed">
+                Our team follows up promptly to help confirm and guide your appointment process.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-8 md:mt-10 pt-6 border-t border-white/10">
+          <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+
+          <div class="flex gap-4">
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/share/1DkCHo1YaG/"
+               target="_blank"
+               class="bg-[#1877F2] hover:scale-105 hover:opacity-95 text-white p-4 rounded-full shadow-md transition duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                <path d="M22 12a10 10 0 10-11.5 9.88v-6.99H8v-2.89h2.5V9.8c0-2.47 1.47-3.84 3.73-3.84 1.08 0 2.21.19 2.21.19v2.43h-1.24c-1.22 0-1.6.76-1.6 1.54v1.85H17l-.4 2.89h-2.47v6.99A10 10 0 0022 12z"/>
+              </svg>
+            </a>
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@the.bears.healthc?_r=1&_t=ZS-94Hd6MuKkwn"
+               target="_blank"
+               class="bg-black hover:scale-105 hover:opacity-95 text-white p-4 rounded-full shadow-md transition duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                <path d="M12.5 2h2.3c.2 1.5 1.2 2.8 2.7 3.3v2.3c-1.1 0-2.2-.3-3.1-.8v6.6a5.1 5.1 0 11-5.1-5.1c.4 0 .8 0 1.2.1v2.6a2.6 2.6 0 10 2 2.5V2z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT FORM -->
+      <div class="lg:col-span-3 bg-white/95 backdrop-blur-sm rounded-[2rem] shadow-2xl border border-white/60 p-6 md:p-10">
+
+        <!-- MODERN VALIDATION MESSAGE -->
+        <div id="formMessage" class="hidden mb-6 rounded-2xl px-5 py-4 font-medium shadow-sm"></div>
+
+        <form method="POST" action="/book" class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6" novalidate>
+
+          <div class="flex flex-col">
+            <label class="text-[#0E2A47] text-sm font-semibold mb-2 ml-1" for="full_name">Full Name</label>
+            <input id="full_name"
+                   name="full_name"
+                   type="text"
+                   autocomplete="name"
+                   placeholder="Enter your full name"
+                   required
+                   class="p-4 rounded-xl border border-gray-200 bg-white focus:border-[#0E2A47] focus:ring-2 focus:ring-[#0E2A47]/20 outline-none transition">
+          </div>
+
+          <div class="flex flex-col">
+            <label class="text-[#0E2A47] text-sm font-semibold mb-2 ml-1" for="phone">Phone Number</label>
+            <input id="phone"
+       name="phone"
+       type="tel"
+       inputmode="numeric"
+       autocomplete="tel"
+       placeholder="0712345678"
+       required
+       maxlength="10"
+       pattern="[0-9]{10}"
+       oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+       class="p-4 rounded-xl border border-gray-200 bg-white focus:border-[#0E2A47] focus:ring-2 focus:ring-[#0E2A47]/20 outline-none transition">
+          </div>
+
+          <div class="flex flex-col">
+            <label class="text-[#0E2A47] text-sm font-semibold mb-2 ml-1" for="email">Email Address</label>
+            <input id="email"
+                   name="email"
+                   type="email"
+                   autocomplete="email"
+                   placeholder="Enter your email address"
+                   required
+                   class="p-4 rounded-xl border border-gray-200 bg-white focus:border-[#0E2A47] focus:ring-2 focus:ring-[#0E2A47]/20 outline-none transition">
+          </div>
+
+          <div class="flex flex-col">
+            <label class="text-[#0E2A47] text-sm font-semibold mb-2 ml-1" for="service">Select Service</label>
+            <select id="service"
+                    name="service"
+                    required
+                    class="p-4 rounded-xl border border-gray-200 bg-white focus:border-[#0E2A47] focus:ring-2 focus:ring-[#0E2A47]/20 outline-none transition">
+              <option value="">Choose a service...</option>
+              <option>Women's Wellness</option>
+              <option>Antenatal & Postnatal</option>
+              <option>Men's Health</option>
+              <option>IV Drip Therapy</option>
+              <option>HIV Prevention & Management</option>
+              <option>Counselling Services</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col">
+            <label class="text-[#0E2A47] text-sm font-semibold mb-2 ml-1" for="appointment_date">Preferred Date</label>
+            <input id="appointment_date"
+                   name="appointment_date"
+                   type="date"
+                   required
+                   class="p-4 rounded-xl border border-gray-200 bg-white focus:border-[#0E2A47] focus:ring-2 focus:ring-[#0E2A47]/20 outline-none transition">
+          </div>
+
+          <div class="flex flex-col">
+            <label class="text-[#0E2A47] text-sm font-semibold mb-2 ml-1" for="appointment_time">Preferred Time</label>
+            <select name="appointment_time"
+                    id="appointment_time"
+                    required
+                    class="p-4 rounded-xl border border-gray-200 bg-white focus:border-[#0E2A47] focus:ring-2 focus:ring-[#0E2A47]/20 outline-none transition">
+              <option value="">Choose a time...</option>
+            </select>
+            <p id="timeSlotHelper" class="text-sm text-gray-500 mt-2 ml-1">
+              Select a date to view available time slots.
+            </p>
+          </div>
+
+          <div class="flex flex-col md:col-span-2">
+            <label class="text-[#0E2A47] text-sm font-semibold mb-2 ml-1" for="message">Additional Information</label>
+            <textarea id="message"
+                      name="message"
+                      rows="5"
+                      placeholder="Tell us anything important about your visit..."
+                      class="p-4 rounded-xl border border-gray-200 bg-white focus:border-[#0E2A47] focus:ring-2 focus:ring-[#0E2A47]/20 outline-none transition"></textarea>
+          </div>
+
+          <button type="submit"
+                  class="bg-[#0E2A47] hover:bg-[#153D6E] text-white font-bold py-4 rounded-xl md:col-span-2 shadow-lg shadow-[#0E2A47]/25 transition-all duration-300 hover:-translate-y-0.5 active:scale-95">
+            Book Appointment
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================= -->
+<!-- ============================= FOOTER ======================== -->
+<!-- ============================================================= -->
+
+<footer class="bg-[#0E2A47] text-white py-10 md:py-12 mt-8 md:mt-10">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-8 md:gap-10">
+
+    <!-- ABOUT -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4">About Us</h3>
+      <p class="text-gray-300">
+        Providing professional, accessible, and compassionate healthcare for families and individuals.
+      </p>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+      <ul class="space-y-2 text-gray-300">
+        <li><a href="#home" class="hover:text-white">Home</a></li>
+        <li><a href="#services" class="hover:text-white">Services</a></li>
+        <li><a href="#products" class="hover:text-white">Products</a></li>
+        <li><a href="#map" class="hover:text-white">Map</a></li>
+        <li><a href="#contact" class="hover:text-white">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- OPERATING HOURS -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4">Operating Hours</h3>
+      <ul class="space-y-2 text-gray-300">
+        <li>Mon – Fri: 08:00 – 18:00</li>
+        <li>Saturday: 09:00 – 15:00</li>
+        <li>Sunday: Appointments Only</li>
+      </ul>
+    </div>
+
+    <!-- CONTACT INFO -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4">Contact</h3>
+      <p class="text-gray-300">📍 Cnr Samuel & Van der Walt Street. FC Dumat Building , Delmas, 2210, South Africa</p>
+      <p class="text-gray-300">📞 065 352 0873</p>
+      <p class="text-gray-300">✉ thebearshealthcare@gmail.com</p>
+    </div>
+
+    <!-- SUPPORTED MEDICAL AID SCHEMES -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4">
+        Supported Medical Aid Schemes
+      </h3>
+
+      <div class="bg-white p-4 rounded-lg">
+        <img 
+          src="{{ url_for('static', filename='medical.jpg') }}" 
+          class="w-full h-auto object-contain"
+          alt="Supported Medical Aid Schemes Logos"
+        >
+      </div>
+    </div>
+
+  </div>
+
+  <p class="mt-10 md:mt-12 text-center text-gray-400 text-sm">
+    © 2026 The Bears Healthcare Group — All Rights Reserved.
+  </p>
+</footer>
+
+<script>
+  const navbar = document.getElementById("navbar");
+  const navLinks = document.getElementById("navLinks");
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  // ===============================
+  // SCROLL EFFECT (NAVBAR ONLY)
+  // ===============================
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 50) {
+      navbar.classList.remove("bg-[#0E2A47]");
+      navbar.classList.add("bg-white", "shadow-lg");
+
+      navLinks.classList.remove("text-white");
+      navLinks.classList.add("text-[#0E2A47]");
+
+      menuBtn.classList.remove("text-white");
+      menuBtn.classList.add("text-[#0E2A47]");
+    } else {
+      navbar.classList.add("bg-[#0E2A47]");
+      navbar.classList.remove("bg-white", "shadow-lg");
+
+      navLinks.classList.add("text-white");
+      navLinks.classList.remove("text-[#0E2A47]");
+
+      menuBtn.classList.add("text-white");
+      menuBtn.classList.remove("text-[#0E2A47]");
+    }
+  });
+
+  // ===============================
+  // TOGGLE MOBILE MENU
+  // ===============================
+  menuBtn.addEventListener("click", function () {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // ===============================
+  // AUTO CLOSE ON LINK CLICK
+  // ===============================
+  const mobileLinks = mobileMenu.querySelectorAll("a");
+
+  mobileLinks.forEach(link => {
+    link.addEventListener("click", function () {
+      mobileMenu.classList.add("hidden");
+    });
+  });
+
+  // ===============================
+  // COUNTER ANIMATION
+  // ===============================
+  const counters = document.querySelectorAll(".counter");
+  let countersStarted = false;
+
+  function runCounters() {
+    counters.forEach(counter => {
+      const target = +counter.getAttribute("data-target");
+      let count = 0;
+      const increment = Math.max(1, Math.ceil(target / 100));
+
+      const updateCounter = () => {
+        count += increment;
+
+        if (count < target) {
+          counter.innerText = count;
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.innerText = target;
+        }
+      };
+
+      updateCounter();
+    });
+  }
+
+  const counterSection = document.querySelector(".counter")?.closest("section");
+
+  if (counterSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersStarted) {
+          countersStarted = true;
+          runCounters();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(counterSection);
+  }
+</script>
+
+<script>
+  const testimonialTrack = document.getElementById("testimonialTrack");
+  const testimonialDots = document.querySelectorAll(".testimonial-dot");
+  let testimonialIndex = 0;
+  let testimonialInterval;
+
+  function updateTestimonialSlider() {
+    if (!testimonialTrack) return;
+    testimonialTrack.style.transform = `translateX(-${testimonialIndex * 100}%)`;
+
+    testimonialDots.forEach((dot, index) => {
+      dot.classList.toggle("bg-white", index === testimonialIndex);
+      dot.classList.toggle("bg-white/40", index !== testimonialIndex);
+    });
+  }
+
+  function nextTestimonialSlide() {
+    testimonialIndex = (testimonialIndex + 1) % 2;
+    updateTestimonialSlider();
+  }
+
+  function prevTestimonialSlide() {
+    testimonialIndex = (testimonialIndex - 1 + 2) % 2;
+    updateTestimonialSlider();
+  }
+
+  function goToTestimonialSlide(index) {
+    testimonialIndex = index;
+    updateTestimonialSlider();
+  }
+
+  function startTestimonialAutoSlide() {
+    testimonialInterval = setInterval(nextTestimonialSlide, 4000);
+  }
+
+  function stopTestimonialAutoSlide() {
+    clearInterval(testimonialInterval);
+  }
+
+  if (testimonialTrack) {
+    const testimonialWrapper = testimonialTrack.parentElement;
+    testimonialWrapper.addEventListener("mouseenter", stopTestimonialAutoSlide);
+    testimonialWrapper.addEventListener("mouseleave", startTestimonialAutoSlide);
+    startTestimonialAutoSlide();
+    updateTestimonialSlider();
+  }
+</script>
+
+{% endblock %}
+

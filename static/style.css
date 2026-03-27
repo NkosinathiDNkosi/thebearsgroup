@@ -1,0 +1,135 @@
+/* ===============================
+   THE BEARS HEALTHCARE — PREMIUM THEME
+================================= */
+
+/* BRAND COLORS */
+:root {
+    --primary: #0E2A47;
+    --primary-light: #153D6E;
+    --accent-red: #C1121F;
+    --soft-blue: #EAF4FF;
+    --pure-white: #ffffff;
+}
+
+/* GLOBAL RESET IMPROVEMENT */
+body {
+    background: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* NAVBAR SCROLL EFFECT */
+header {
+    transition: all 0.4s ease;
+}
+
+header.scrolled {
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* HERO BACKGROUND ENHANCEMENT */
+#home {
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f3f8ff 50%,
+        #ffffff 100%
+    );
+}
+
+/* BUTTON IMPROVEMENT */
+button,
+a.inline-block {
+    transition: all 0.3s ease;
+}
+
+button:hover,
+a.inline-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(14,42,71,0.2);
+}
+
+/* SERVICE CARDS PREMIUM SHADOW */
+#services .bg-white {
+    transition: all 0.4s ease;
+}
+
+#services .bg-white:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(14,42,71,0.12);
+}
+
+/* STAT CARDS GLASS ENHANCED */
+.backdrop-blur-xl {
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(15px);
+}
+
+/* CAROUSEL SMOOTHNESS */
+#carousel {
+    transition: transform 0.8s cubic-bezier(.77,0,.18,1);
+}
+
+/* MAP SECTION SOFT FADE */
+#map {
+    background: linear-gradient(to bottom, #ffffff, #f3f8ff);
+}
+
+/* CONTACT FORM PREMIUM */
+form {
+    background: linear-gradient(145deg, #ffffff, #f3f8ff);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 0 3px rgba(14,42,71,0.1);
+}
+
+/* FOOTER RED ACCENT LINE */
+footer {
+    position: relative;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--accent-red);
+}
+
+/* WHATSAPP BUTTON FLOAT EFFECT */
+a.fixed {
+    transition: all 0.3s ease;
+}
+
+a.fixed:hover {
+    transform: scale(1.1);
+}
+
+/* SMOOTH FADE ANIMATION */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.2s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 6px;
+}

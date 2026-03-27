@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}The Bears Healthcare Group{% endblock %}</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="text-gray-800 bg-white">
+
+    <!-- ================= GLOBAL BACKGROUND ================= -->
+    <!-- REMOVE THIS IF YOU DON'T WANT THE BLUE GRADIENT -->
+    <!-- <div class="mesh-background"></div> -->
+    <!-- ====================================================== -->
+
+    {% block content %}{% endblock %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

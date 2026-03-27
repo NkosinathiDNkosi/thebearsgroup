@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bears Healthcare Group | Admin Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", "Segoe UI", sans-serif;
+        }
+
+        :root {
+            --bears-blue: #0E2A47;
+            --bears-blue-dark: #153D6E;
+            --bears-blue-light: #1B3C6B;
+            --bears-red: #C1121F;
+            --white: #ffffff;
+            --border-soft: rgba(255,255,255,0.18);
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background:
+                radial-gradient(circle at top left, rgba(27, 60, 107, 0.30), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(193, 18, 31, 0.16), transparent 25%),
+                linear-gradient(-45deg, #0E2A47, #153D6E, #1B3C6B, #0E2A47);
+            background-size: 400% 400%;
+            animation: gradientFlow 14s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .flash-message {
+            background: rgba(255,255,255,0.14);
+            color: white;
+            padding: 14px 16px;
+            border-radius: 14px;
+            margin-bottom: 18px;
+            text-align: center;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.14);
+            backdrop-filter: blur(14px);
+            animation: fadeInDown 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .login-container {
+            width: 100%;
+            padding: 38px 34px;
+            border-radius: 28px;
+            backdrop-filter: blur(24px);
+            background: rgba(255,255,255,0.12);
+            border: 1px solid var(--border-soft);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.32);
+            color: white;
+            animation: fadeInUp 0.9s ease;
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .brand-logo {
+            width: 78px;
+            height: 78px;
+            margin: 0 auto 16px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transform: translateZ(0);
+}
+
+        .brand h1 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .brand p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.82);
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.92);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 14px;
+            outline: none;
+            font-size: 0.95rem;
+            background: rgba(255,255,255,0.94);
+            color: #0E2A47;
+            transition: all 0.25s ease;
+        }
+
+        input::placeholder {
+            color: #64748B;
+        }
+
+        input:focus {
+            border-color: rgba(27, 60, 107, 0.65);
+            box-shadow: 0 0 0 4px rgba(27, 60, 107, 0.18);
+            background: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ffffff, #f4f8fc);
+            color: var(--bears-blue);
+            font-weight: 800;
+            font-size: 0.96rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin-top: 6px;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.14);
+        }
+
+        button:hover {
+            transform: translateY(-2px) scale(1.01);
+            background: #ffffff;
+        }
+
+        .footer-note {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.72);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 520px) {
+            .login-container {
+                padding: 28px 22px;
+                border-radius: 22px;
+            }
+
+            .brand h1 {
+                font-size: 1.2rem;
+            }
+
+            .brand p {
+                font-size: 0.88rem;
+            }
+
+            .brand-logo {
+                width: 68px;
+                height: 68px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-wrapper">
+
+        {% if error %}
+        <div class="flash-message">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <div class="login-container">
+            <div class="brand">
+                <div class="brand-logo">
+                    <img src="{{ url_for('static', filename='logo.jpg') }}"
+                         alt="The Bears Healthcare Group Logo"
+                         style="width:100%; height:100%; object-fit:contain;">
+                </div>
+
+                <h1>The Bears Healthcare Group</h1>
+                <p>
+                    Secure administrator access for managing appointments,
+                    patient bookings, and healthcare operations.
+                </p>
+            </div>
+
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" name="username" placeholder="Enter username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" placeholder="Enter password" required>
+                </div>
+
+                <button type="submit">Secure Login</button>
+            </form>
+
+            <div class="footer-note">
+                The Bears Healthcare Group Admin Portal
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
