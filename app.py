@@ -162,7 +162,7 @@ def admin_required():
 def send_confirmation_email(full_name, email, service, appointment_date, appointment_time):
     try:
         resend.Emails.send({
-            "from": "Bears Healthcare <appointments@bearshealthcare.co.za>",
+            "from": "Bears Healthcare <appointments@thebearshealthcaregroup.co.za>",
             "to": [email],
             "subject": "Appointment Confirmation - Bears Healthcare",
             "html": f"""
