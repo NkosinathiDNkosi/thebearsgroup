@@ -49,10 +49,6 @@ def send_confirmation_email(appointment):
         print("❌ Email error:", e)
 
 
-    except Exception as e:
-        print("❌ Email error:", e)
-
-
 # ============================================================
 # DATABASE PATH
 # ============================================================
