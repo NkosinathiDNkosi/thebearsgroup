@@ -4,9 +4,48 @@ import os
 import re
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+import resend  # ✅ ADDED
 
 app = Flask(__name__)
 app.secret_key = "bears-healthcare-super-secure-2026-admin-key"
+
+# ============================================================
+# 🔥 RESEND CONFIG (ADDED)
+# ============================================================
+resend.api_key = os.getenv("RESEND_API_KEY")
+FROM_EMAIL = os.getenv("FROM_EMAIL")
+
+
+def send_confirmation_email(appointment):
+    try:
+        if not resend.api_key or not FROM_EMAIL:
+            print("❌ Missing RESEND_API_KEY or FROM_EMAIL")
+            return
+
+        resend.Emails.send({
+            "from": FROM_EMAIL,
+            "to": [appointment["email"]],
+            "subject": "Appointment Confirmed - The Bears Healthcare Group",
+            "html": f"""
+                <h2>Appointment Confirmed</h2>
+                <p>Hello {appointment['full_name']},</p>
+                <p>Your appointment has been confirmed.</p>
+
+                <p><b>Service:</b> {appointment['service']}</p>
+                <p><b>Date:</b> {appointment['appointment_date']}</p>
+                <p><b>Time:</b> {appointment['appointment_time']}</p>
+
+                <br>
+                <p>We look forward to seeing you.</p>
+                <p><b>The Bears Healthcare Group</b></p>
+            """
+        })
+
+        print("✅ Email sent")
+
+    except Exception as e:
+        print("❌ Email error:", e)
+
 
 # ============================================================
 # DATABASE PATH
@@ -97,9 +136,6 @@ def create_default_admin():
             (admin_username, hashed_password)
         )
         conn.commit()
-        print("Default admin created:")
-        print("Username: admin")
-        print("Password: Admin@123")
 
     conn.close()
 
@@ -150,7 +186,7 @@ def admin_required():
 
 
 # ============================================================
-# PUBLIC ROUTES
+# ROUTES
 # ============================================================
 @app.route("/")
 def home():
@@ -179,235 +215,6 @@ def booked_slots():
     return jsonify(times)
 
 
-@app.route("/book", methods=["POST"])
-def book():
-    data = request.form
-
-    full_name = data.get("full_name", "").strip()
-    phone = data.get("phone", "").strip()
-    email = data.get("email", "").strip()
-    service = data.get("service", "").strip()
-    appointment_date = data.get("appointment_date", "").strip()
-    appointment_time = data.get("appointment_time", "").strip()
-    message = data.get("message", "")
-
-    if is_only_spaces(full_name) or len(full_name) < 3:
-        return redirect(url_for("home", error="Please enter a valid full name."))
-
-    if is_only_spaces(phone):
-        return redirect(url_for("home", error="Phone number cannot be empty."))
-
-    if not is_valid_sa_phone(phone):
-        return redirect(url_for("home", error="Enter a valid South African phone number, e.g. 0712345678 or +27712345678."))
-
-    if is_only_spaces(email):
-        return redirect(url_for("home", error="Email address cannot be empty."))
-
-    if not is_valid_email(email):
-        return redirect(url_for("home", error="Please enter a valid email address."))
-
-    if is_only_spaces(service):
-        return redirect(url_for("home", error="Please select a service."))
-
-    if is_only_spaces(appointment_date):
-        return redirect(url_for("home", error="Please choose an appointment date."))
-
-    valid_date, date_error = is_valid_date(appointment_date)
-    if not valid_date:
-        return redirect(url_for("home", error=date_error))
-
-    if is_only_spaces(appointment_time):
-        return redirect(url_for("home", error="Please choose an appointment time."))
-
-    if message and is_only_spaces(message):
-        return redirect(url_for("home", error="Additional information cannot contain spaces only."))
-
-    clean_message = message.strip()
-
-    conn = get_db_connection()
-    cursor = conn.cursor()
-
-    existing_appointment = cursor.execute("""
-        SELECT * FROM appointments
-        WHERE appointment_date = ?
-          AND appointment_time = ?
-          AND COALESCE(is_deleted, 0) = 0
-    """, (appointment_date, appointment_time)).fetchone()
-
-    if existing_appointment:
-        conn.close()
-        return redirect(
-            url_for(
-                "home",
-                error="That time slot is already booked. Please choose a different date or time."
-            )
-        )
-
-    cursor.execute("""
-        INSERT INTO appointments
-        (full_name, phone, email, service, appointment_date, appointment_time, message, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    """, (
-        full_name,
-        normalize_phone(phone),
-        email,
-        service,
-        appointment_date,
-        appointment_time,
-        clean_message,
-        "Pending"
-    ))
-
-    conn.commit()
-    conn.close()
-
-    return redirect(
-        url_for("home", success="Your appointment request was submitted successfully.")
-    )
-
-
-# ============================================================
-# STAFF LOGIN
-# ============================================================
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if admin_required():
-        return redirect(url_for("dashboard"))
-
-    if request.method == "POST":
-        username = request.form.get("username", "").strip()
-        password = request.form.get("password", "").strip()
-
-        conn = get_db_connection()
-        admin = conn.execute(
-            "SELECT * FROM admins WHERE username = ?",
-            (username,)
-        ).fetchone()
-        conn.close()
-
-        if admin and check_password_hash(admin["password"], password):
-            session["admin_logged_in"] = True
-            session["admin_username"] = admin["username"]
-            return redirect(url_for("dashboard"))
-
-        return render_template("login.html", error="Invalid username or password.")
-
-    return render_template("login.html")
-
-
-# ============================================================
-# PROTECTED DASHBOARD
-# ============================================================
-@app.route("/dashboard")
-def dashboard():
-    if not admin_required():
-        return redirect(url_for("login"))
-
-    conn = get_db_connection()
-    appointments = conn.execute("""
-        SELECT *
-        FROM appointments
-        WHERE COALESCE(is_deleted, 0) = 0
-        ORDER BY appointment_date ASC, appointment_time ASC
-    """).fetchall()
-    conn.close()
-
-    return render_template("dashboard.html", appointments=appointments)
-
-
-@app.route("/bin")
-def bin_page():
-    if not admin_required():
-        return redirect(url_for("login"))
-
-    conn = get_db_connection()
-    appointments = conn.execute("""
-        SELECT *
-        FROM appointments
-        WHERE COALESCE(is_deleted, 0) = 1
-        ORDER BY deleted_at DESC
-    """).fetchall()
-    conn.close()
-
-    return render_template("bin.html", appointments=appointments)
-
-
-@app.route("/restore-appointment/<int:appointment_id>", methods=["POST"])
-def restore_appointment(appointment_id):
-    if not admin_required():
-        return redirect(url_for("login"))
-
-    conn = get_db_connection()
-    conn.execute("""
-        UPDATE appointments
-        SET is_deleted = 0,
-            deleted_at = NULL
-        WHERE id = ?
-    """, (appointment_id,))
-    conn.commit()
-    conn.close()
-
-    return redirect(url_for("bin_page"))
-
-
-@app.route("/purge-appointment/<int:appointment_id>", methods=["POST"])
-def purge_appointment(appointment_id):
-    if not admin_required():
-        return redirect(url_for("login"))
-
-    conn = get_db_connection()
-    conn.execute("DELETE FROM appointments WHERE id = ?", (appointment_id,))
-    conn.commit()
-    conn.close()
-
-    return redirect(url_for("bin_page"))
-
-
-@app.route("/change-password", methods=["GET", "POST"])
-def change_password():
-    if not admin_required():
-        return redirect(url_for("login"))
-
-    error = None
-    success = None
-
-    if request.method == "POST":
-        current_password = request.form.get("current_password", "").strip()
-        new_password = request.form.get("new_password", "").strip()
-
-        if len(new_password) < 6:
-            error = "New password must be at least 6 characters long."
-            return render_template("change_password.html", error=error, success=success)
-
-        conn = get_db_connection()
-        admin = conn.execute(
-            "SELECT * FROM admins WHERE username = ?",
-            (session.get("admin_username"),)
-        ).fetchone()
-
-        if not admin or not check_password_hash(admin["password"], current_password):
-            conn.close()
-            error = "Current password is incorrect."
-            return render_template("change_password.html", error=error, success=success)
-
-        new_hashed_password = generate_password_hash(new_password)
-
-        conn.execute("""
-            UPDATE admins
-            SET password = ?
-            WHERE username = ?
-        """, (new_hashed_password, session.get("admin_username")))
-        conn.commit()
-        conn.close()
-
-        success = "Password updated successfully."
-
-    return render_template("change_password.html", error=error, success=success)
-
-
-# ============================================================
-# UPDATE STATUS
-# ============================================================
 @app.route("/update-status/<int:appointment_id>", methods=["POST"])
 def update_status(appointment_id):
     if not admin_required():
@@ -419,48 +226,23 @@ def update_status(appointment_id):
         return redirect(url_for("dashboard"))
 
     conn = get_db_connection()
+
+    appointment = conn.execute(
+        "SELECT * FROM appointments WHERE id = ?",
+        (appointment_id,)
+    ).fetchone()
+
     conn.execute("""
         UPDATE appointments
         SET status = ?
         WHERE id = ?
     """, (new_status, appointment_id))
+
     conn.commit()
     conn.close()
 
-    return redirect(url_for("dashboard"))
-
-
-# ============================================================
-# SOFT DELETE APPOINTMENT
-# ============================================================
-@app.route("/delete-appointment/<int:appointment_id>", methods=["POST"])
-def delete_appointment(appointment_id):
-    if not admin_required():
-        return redirect(url_for("login"))
-
-    deleted_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    conn = get_db_connection()
-    conn.execute("""
-        UPDATE appointments
-        SET is_deleted = 1,
-            deleted_at = ?
-        WHERE id = ?
-    """, (deleted_at, appointment_id))
-    conn.commit()
-    conn.close()
+    # 🔥 EMAIL TRIGGER
+    if new_status == "Confirmed" and appointment:
+        send_confirmation_email(appointment)
 
     return redirect(url_for("dashboard"))
-
-
-# ============================================================
-# LOGOUT
-# ============================================================
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect(url_for("login"))
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
