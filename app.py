@@ -12,7 +12,7 @@ app.secret_key = "bears-healthcare-super-secure-2026-admin-key"
 # ============================================================
 # 🔥 RESEND EMAIL CONFIG
 # ============================================================
-resend.api_key = os.getenv("RESEND_API_KEY")
+resend.api_key = os.getenv("re_gxw2JqR5_7WXBjVqZAuckNHNdmpRjVjuh")
 
 
 def send_confirmation_email(appointment):
@@ -44,6 +44,10 @@ def send_confirmation_email(appointment):
             """
         })
         print("✅ Email sent")
+
+    except Exception as e:
+        print("❌ Email error:", e)
+
 
     except Exception as e:
         print("❌ Email error:", e)
