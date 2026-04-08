@@ -2,11 +2,18 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, s
 import sqlite3
 import os
 import re
+import resend
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = "bears-healthcare-super-secure-2026-admin-key"
+
+# ============================================================
+# RESEND CONFIG
+# ============================================================
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
+resend.api_key = RESEND_API_KEY
 
 # ============================================================
 # DATABASE PATH
@@ -112,6 +119,7 @@ create_default_admin()
 # ============================================================
 # VALIDATION HELPERS
 # ============================================================
+
 def is_only_spaces(value):
     return not value or value.strip() == ""
 
@@ -147,7 +155,43 @@ def is_valid_date(date_str):
 
 def admin_required():
     return session.get("admin_logged_in") is True
+    
+# ============================================================
+# EMAIL FUNCTION (RESEND)
+# ============================================================
+def send_confirmation_email(full_name, email, service, appointment_date, appointment_time):
+    try:
+        resend.Emails.send({
+            "from": "Bears Healthcare <appointments@bearshealthcare.co.za>",
+            "to": [email],
+            "subject": "Appointment Confirmation - Bears Healthcare",
+            "html": f"""
+                <h2>Appointment Request Received</h2>
 
+                <p>Dear {full_name},</p>
+
+                <p>Your appointment request has been received successfully.</p>
+
+                <h3>Appointment Details</h3>
+                <ul>
+                    <li><strong>Service:</strong> {service}</li>
+                    <li><strong>Date:</strong> {appointment_date}</li>
+                    <li><strong>Time:</strong> {appointment_time}</li>
+                    <li><strong>Status:</strong> Pending Confirmation</li>
+                </ul>
+
+                <p>We will contact you shortly to confirm your appointment.</p>
+
+                <br>
+                <p>Best regards,</p>
+                <p><strong>Bears Healthcare</strong></p>
+            """
+        })
+
+        print("Confirmation email sent")
+
+    except Exception as e:
+        print("Email failed:", e)
 
 # ============================================================
 # PUBLIC ROUTES
@@ -260,6 +304,14 @@ def book():
 
     conn.commit()
     conn.close()
+
+    send_confirmation_email(
+    full_name,
+    email,
+    service,
+    appointment_date,
+    appointment_time
+)
 
     return redirect(
         url_for("home", success="Your appointment request was submitted successfully.")
